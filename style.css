@@ -1,646 +1,655 @@
 @charset "UTF-8";
 @import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
 
-:root{
-    --size: max(5px, 1vmin);
-    --heght: 80em;
-    --pad: 1.25em;
-    --border-radius: 6.666em;
-    --gutter: calc(var(--pad) * 2);
-    --button-width: 0.333em;
-    --notch-height: 3.33em;
-    --notch-width: 33.3%;
-    --notch-radius: calc(var(--border-radius) - calc(var(--pad) * 2));
-    --notch-duration: 0.333s;
-    --ease: cubic-bezier(.666, 0, .4, 1);
-    --ease-spring: cubic-bezier(.666, 0, .4, 1.2);
-    --ease-out: cubic-bezier(.15, 0, .333, 1);
-    --border-width: 0.4em;
-    --deep-purple: 284;
-    --gold: 30;
-    --space-black: 215;
-    --silver: 254;
-    --c-h: var(--deep-purple);
-    --c-s: 100%;
-    --c-l: 50%;
+:root {
+    --size: max(5px, 1vmin); /* Определяет размер, который будет равен максимальному значению между 5 пикселями и 1% от меньшей стороны окна просмотра */
+    --heght: 80em; /* Определяет высоту (опечатка в названии переменной, должно быть 'height') в единицах em */
+    --pad: 1.25em; /* Определяет отступ (padding) в 1.25em */
+    --border-radius: 6.666em; /* Определяет радиус скругления границ в 6.666em */
+    --gutter: calc(var(--pad) * 2); /* Определяет значение 'gutter' как двойной отступ (padding) */
+    --button-width: 0.333em; /* Определяет ширину кнопки в 0.333em */
+    --notch-height: 3.33em; /* Определяет высоту выреза (notch) в 3.33em */
+    --notch-width: 33.3%; /* Определяет ширину выреза (notch) в 33.3% от родительского элемента */
+    --notch-radius: calc(var(--border-radius) - calc(var(--pad) * 2)); /* Определяет радиус скругления выреза, вычитая двойной отступ из радиуса границ */
+    --notch-duration: 0.333s; /* Определяет продолжительность анимации выреза в 0.333 секунды */
+    --ease: cubic-bezier(.666, 0, .4, 1); /* Определяет функцию временной интерполяции для анимаций (ease) */
+    --ease-spring: cubic-bezier(.666, 0, .4, 1.2); /* Определяет функцию временной интерполяции для пружинных анимаций */
+    --ease-out: cubic-bezier(.15, 0, .333, 1); /* Определяет функцию временной интерполяции для анимаций с эффектом замедления (ease-out) */
+    --border-width: 0.4em; /* Определяет ширину границы в 0.4em */
+    --deep-purple: 284; /* Определяет значение оттенка для глубокого пурпурного цвета (возможно, для HSL) */
+    --gold: 30; /* Определяет значение оттенка для золотого цвета (возможно, для HSL) */
+    --space-black: 215; /* Определяет значение оттенка для космического черного цвета (возможно, для HSL) */
+    --silver: 254; /* Определяет значение оттенка для серебряного цвета (возможно, для HSL) */
+    --c-h: var(--deep-purple); /* Определяет оттенок цвета (hue) как глубокий пурпурный */
+    --c-s: 100%; /* Определяет насыщенность цвета (saturation) как 100% */
+    --c-l: 50%; /* Определяет яркость цвета (lightness) как 50% */
 }
 
-@-webkit-keyframes appear{
-    to{
-        transform: scale3d(1, 1, 1);
-        opacity: 1;
+@-webkit-keyframes appear { /* Определяет ключевые кадры для анимации с именем 'appear' с префиксом -webkit- для поддержки старых версий браузеров на основе WebKit */
+    to { /* Указывает конечное состояние анимации */
+        transform: scale3d(1, 1, 1); /* Применяет 3D-преобразование, устанавливая масштаб на 1 по всем осям (x, y, z), что означает отсутствие изменения размера */
+        opacity: 1; /* Устанавливает непрозрачность элемента на 1, что делает его полностью видимым */
     }
 }
 
-@keyframes appear{
-    to{
-        transform: scale3d(1, 1, 1);
-        opacity: 1;
+@keyframes appear { /* Определяет ключевые кадры для анимации с именем 'appear' без префиксов, что делает её совместимой с современными браузерами */
+    to { /* Указывает конечное состояние анимации (все свойства, указанные здесь, будут применены в конце анимации) */
+        transform: scale3d(1, 1, 1); /* Применяет 3D-преобразование, устанавливая масштаб на 1 по всем осям (x, y, z), что означает отсутствие изменения размера */
+        opacity: 1; /* Устанавливает непрозрачность элемента на 1, что делает его полностью видимым */
     }
 }
 
-body{
-    background: #00000a;
-    display: flex;
-    flex-direction: column;
-    gap: 3em;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    font-family: 'Inter';
-    font-size: var(--size);
+body {
+    background: #00000a; /* Устанавливает фоновый цвет тела документа на очень темный оттенок (почти черный) */
+    display: flex; /* Применяет флексбокс для управления расположением дочерних элементов */
+    flex-direction: column; /* Устанавливает направление флекс-элементов по вертикали (в колонку) */
+    gap: 3em; /* Устанавливает промежуток в 3em между флекс-элементами */
+    align-items: center; /* Выравнивает дочерние элементы по центру по горизонтали */
+    justify-content: center; /* Выравнивает дочерние элементы по центру по вертикали */
+    min-height: 100vh; /* Устанавливает минимальную высоту тела документа на 100% высоты окна просмотра */
+    font-family: 'Inter'; /* Устанавливает шрифт для текста на 'Inter' */
+    font-size: var(--size); /* Устанавливает размер шрифта, используя значение переменной --size */
 }
 
-.phone{
-    position: relative;
-    z-index: 1;
-    aspect-ratio: 37/76;
-    background: black;
-    height: var(--heght);
-    border-radius: var(--border-radius);
-    box-shadow: 0 0 0.1em 0.25em hsl(var(--c-h), 20%, 25%), 0 0 0 var(--border-width) hsl(var(--c-h), 30%, 85%);
-    box-sizing: border-box;
-    opacity: 0;
-    transform: scale3d(1.1, 1.1, 1);
-    -webkit-animation: appear 1s var(--ease-out) forwards;
-    animation: appear 1s var(--ease-out) forwards;
-    -webkit-backface-visibility: hidden;
+.phone {
+    position: relative; /* Устанавливает относительное позиционирование элемента, позволяя использовать z-index для управления наложением */
+    z-index: 1; /* Устанавливает уровень наложения элемента, чтобы он находился выше элементов с более низким z-index */
+    aspect-ratio: 37/76; /* Устанавливает соотношение сторон элемента, чтобы он сохранял пропорции 37:76 */
+    background: black; /* Устанавливает фоновый цвет элемента на черный */
+    height: var(--heght); /* Устанавливает высоту элемента, используя значение переменной --height (возможно, опечатка в названии переменной) */
+    border-radius: var(--border-radius); /* Устанавливает радиус скругления границ элемента, используя значение переменной --border-radius */
+    box-shadow: 0 0 0.1em 0.25em hsl(var(--c-h), 20%, 25%), 0 0 0 var(--border-width) hsl(var(--c-h), 30%, 85%); /* Применяет тень к элементу с двумя слоями: один с размерами и цветом, определенными переменными */
+    box-sizing: border-box; /* Устанавливает модель коробки так, чтобы ширина и высота включали отступы и границы */
+    opacity: 0; /* Устанавливает начальную непрозрачность элемента на 0, делая его невидимым */
+    transform: scale3d(1.1, 1.1, 1); /* Применяет 3D-преобразование, увеличивая элемент на 10% по осям x и y */
+    -webkit-animation: appear 1s var(--ease-out) forwards; /* Применяет анимацию 'appear' с продолжительностью 1 секунда и функцией временной интерполяции для старых версий браузеров на основе WebKit */
+    animation: appear 1s var(--ease-out) forwards; /* Применяет анимацию 'appear' с продолжительностью 1 секунда и функцией временной интерполяции */
+    -webkit-backface-visibility: hidden; /* Скрывает заднюю сторону элемента для старых версий браузеров на основе WebKit, предотвращая отображение задней стороны при поворотах */
 }
 
-.phone::before{
-    content: "";
-    position: absolute;
-    top: var(--border-radius);
-    right: calc(var(--border-width) * -1);
-    bottom: calc(var(--border-radius));
-    left: calc(var(--border-width) * -1);
-    border: 0.5em solid hsl(var(--c-h), 20%, 30%);
-    border-left-width: 0;
-    border-right-width: 0;
+.phone::before {
+    content: ""; /* Создает пустой контент для псевдоэлемента, необходимый для его отображения */
+    position: absolute; /* Устанавливает абсолютное позиционирование, чтобы элемент позиционировался относительно ближайшего родительского элемента с относительным позиционированием */
+    top: var(--border-radius); /* Устанавливает верхнюю границу псевдоэлемента на значение радиуса границ, определенное переменной --border-radius */
+    right: calc(var(--border-width) * -1); /* Устанавливает правую границу псевдоэлемента на отрицательное значение ширины границы, чтобы сместить его за пределы элемента */
+    bottom: calc(var(--border-radius)); /* Устанавливает нижнюю границу псевдоэлемента на значение радиуса границ, определенное переменной --border-radius */
+    left: calc(var(--border-width) * -1); /* Устанавливает левую границу псевдоэлемента на отрицательное значение ширины границы, чтобы сместить его за пределы элемента */
+    border: 0.5em solid hsl(var(--c-h), 20%, 30%); /* Устанавливает границу псевдоэлемента шириной 0.5em, сплошной линии и цветом, определенным с помощью HSL и переменной --c-h */
+    border-left-width: 0; /* Устанавливает ширину левой границы на 0, чтобы убрать левую границу */
+    border-right-width: 0; /* Устанавливает ширину правой границы на 0, чтобы убрать правую границу */
 }
 
-.buttons{
-    position: absolute;
-    inset: calc(var(--border-width) * -1);
-    pointer-events: none;
+.buttons {
+    position: absolute; /* Устанавливает абсолютное позиционирование, чтобы элемент позиционировался относительно ближайшего родительского элемента с относительным позиционированием */
+    inset: calc(var(--border-width) * -1); /* Устанавливает все четыре границы (top, right, bottom, left) на отрицательное значение ширины границы, чтобы элемент выходил за пределы родительского элемента */
+    pointer-events: none; /* Отключает взаимодействие с элементом, что означает, что клики и другие события указателя не будут обрабатываться этим элементом */
 }
 
-.buttons .left, .buttons .right{
-    position: absolute;
-    width: var(--button-width);
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    gap: 1.5em;
+.buttons .left, .buttons .right {
+    position: absolute; /* Устанавливает абсолютное позиционирование для элементов, чтобы они позиционировались относительно ближайшего родительского элемента с относительным позиционированием */
+    width: var(--button-width); /* Устанавливает ширину элементов, используя значение переменной --button-width */
+    display: flex; /* Применяет флексбокс для управления расположением дочерних элементов внутри этих элементов */
+    flex-direction: column; /* Устанавливает направление флекс-элементов по вертикали (в колонку) */
+    align-items: stretch; /* Растягивает дочерние элементы по ширине, чтобы они занимали всю доступную ширину родительского элемента */
+    gap: 1.5em; /* Устанавливает промежуток в 1.5em между флекс-элементами */
 }
 
-.buttons .left{
-    right: 100%;
-    top: calc(var(--border-radius) * 2);
+.buttons .left {
+    right: 100%; /* Устанавливает правую границу элемента на 100% ширины родительского элемента, что смещает его полностью влево за пределы родителя */
+    top: calc(var(--border-radius) * 2); /* Устанавливает верхнюю границу элемента на значение, равное удвоенному радиусу границ, определенному переменной --border-radius, что смещает элемент вниз от верхней границы родителя */
 }
 
-.buttons .left .button:nth-child(1){
-    height: 3em;
-    margin-bottom: 0.5em;
+.buttons .left .button:nth-child(1) {
+    height: 3em; /* Устанавливает высоту первого дочернего элемента с классом .button на 3em */
+    margin-bottom: 0.5em; /* Устанавливает нижний отступ (margin) для первого дочернего элемента с классом .button на 0.5em, создавая пространство между ним и следующим элементом */
 }
 
-.buttons .right{
-    left: 100%;
-    transform: scale3d(-1, 1, 1);
-    top: calc(var(--border-radius) * 3);
+.buttons .right {
+    left: 100%; /* Устанавливает левую границу элемента на 100% ширины родительского элемента, что смещает его полностью вправо за пределы родителя */
+    transform: scale3d(-1, 1, 1); /* Применяет 3D-преобразование, отражая элемент по оси X, что делает его зеркальным отображением */
+    top: calc(var(--border-radius) * 3); /* Устанавливает верхнюю границу элемента на значение, равное утроенному радиусу границ, определенному переменной --border-radius, что смещает элемент вниз от верхней границы родителя */
 }
 
-.buttons .right .button{
-    height: 9.5em;
+.buttons .right .button {
+    height: 9.5em; /* Устанавливает высоту элемента с классом .button внутри .buttons .right на 9.5em */
 }
 
-.buttons .button{
-    background: hsl(var(--c-h), 20%, 95%);
-    height: 6em;
-    box-shadow: inset -0.15em 0 0.1em black, inset 0 0 0.1em hsl(var(--c-h), 30%, 90%), inset 0 0.2em 0.1em hsl(var(--c-h), 30%, 90%), inset 0 -0.2em 0.1em hsl(var(--c-h), 30%, 90%), inset -0.1em 0.333em 0.1em rgba(0, 0, 0, 0.5), inset -0.1em -0.333em 0.1em rgba(0, 0, 0, 0.5);
-    border-top-left-radius: 0.2em;
-    border-bottom-left-radius: 0.2em;
+.buttons .button {
+    background: hsl(var(--c-h), 20%, 95%); /* Устанавливает фоновый цвет элемента с классом .button, используя HSL-значения, определенные переменной --c-h, с 20% насыщенности и 95% яркости */
+    height: 6em; /* Устанавливает высоту элемента с классом .button на 6em */
+    box-shadow: inset -0.15em 0 0.1em black, /* Применяет внутреннюю тень с черным цветом, смещенную на -0.15em по оси X и 0 по оси Y */
+                inset 0 0 0.1em hsl(var(--c-h), 30%, 90%), /* Применяет внутреннюю тень с цветом, определенным HSL, смещенную на 0 по оси X и Y, с размерами 0.1em */
+                inset 0 0.2em 0.1em hsl(var(--c-h), 30%, 90%), /* Применяет внутреннюю тень с цветом, определенным HSL, смещенную на 0 по оси X и 0.2em по оси Y */
+                inset 0 -0.2em 0.1em hsl(var(--c-h), 30%, 90%), /* Применяет внутреннюю тень с цветом, определенным HSL, смещенную на 0 по оси X и -0.2em по оси Y */
+                inset -0.1em 0.333em 0.1em rgba(0, 0, 0, 0.5), /* Применяет внутреннюю тень с полупрозрачным черным цветом, смещенную на -0.1em по оси X и 0.333em по оси Y */
+                inset -0.1em -0.333em 0.1em rgba(0, 0, 0, 0.5); /* Применяет внутреннюю тень с полупрозрачным черным цветом, смещенную на -0.1em по оси X и -0.333em по оси Y */
+    border-top-left-radius: 0.2em; /* Устанавливает радиус скругления верхнего левого угла элемента на 0.2em */
+    border-bottom-left-radius: 0.2em; /* Устанавливает радиус скругления нижнего левого угла элемента на 0.2em */
 }
 
-.screen-container{
-    position: absolute;
-    inset: 0;
-    border-radius: var(--border-radius);
-    border: var(--pad) solid black;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: calc(var(--pad) * 2);
+.screen-container {
+    position: absolute; /* Устанавливает абсолютное позиционирование, чтобы элемент позиционировался относительно ближайшего родительского элемента с относительным позиционированием */
+    inset: 0; /* Устанавливает все четыре границы (top, right, bottom, left) на 0, заполняя весь доступный пространство родительского элемента */
+    border-radius: var(--border-radius); /* Устанавливает радиус скругления границ элемента, используя значение переменной --border-radius */
+    border: var(--pad) solid black; /* Устанавливает границу элемента с шириной, определенной переменной --pad, сплошной черной линией */
+    display: flex; /* Применяет флексбокс для управления расположением дочерних элементов внутри контейнера */
+    flex-direction: column; /* Устанавливает направление флекс-элементов по вертикали (в колонку) */
+    align-items: center; /* Выравнивает дочерние элементы по центру по горизонтали */
+    gap: calc(var(--pad) * 2); /* Устанавливает промежуток между флекс-элементами, равный удвоенному значению переменной --pad */
 }
 
-.screen-container::before{
-    content: "";
-    position: absolute;
-    z-index: 2;
-    background: white;
-    width: 36.6%;
-    bottom: calc(var(--pad) * 0.75);
-    height: calc(var(--pad) * 0.5);
-    border-radius: calc(var(--pad) * 0.25);
-    filter: drop-shadow(0 0.1em 0.25em rgba(0, 0, 0, 0.1));
+.screen-container::before {
+    content: ""; /* Создает пустой контент для псевдоэлемента, необходимый для его отображения */
+    position: absolute; /* Устанавливает абсолютное позиционирование, чтобы элемент позиционировался относительно ближайшего родительского элемента с относительным позиционированием */
+    z-index: 2; /* Устанавливает уровень наложения псевдоэлемента, чтобы он находился выше элементов с более низким z-index */
+    background: white; /* Устанавливает фоновый цвет псевдоэлемента на белый */
+    width: 36.6%; /* Устанавливает ширину псевдоэлемента на 36.6% от ширины родительского элемента */
+    bottom: calc(var(--pad) * 0.75); /* Устанавливает нижнюю границу псевдоэлемента на значение, равное 0.75 умноженному на переменную --pad, смещая его вверх от нижней границы родителя */
+    height: calc(var(--pad) * 0.5); /* Устанавливает высоту псевдоэлемента на значение, равное 0.5 умноженному на переменную --pad */
+    border-radius: calc(var(--pad) * 0.25); /* Устанавливает радиус скругления границ псевдоэлемента на значение, равное 0.25 умноженному на переменную --pad */
+    filter: drop-shadow(0 0.1em 0.25em rgba(0, 0, 0, 0.1)); /* Применяет эффект тени к псевдоэлементу, создавая легкую тень с заданными смещениями и размерами */
 }
 
-.bg{
-    position: absolute;
-    inset: 0;
-    background: black;
-    border-radius: calc(var(--border-radius) - var(--pad));
-    overflow: hidden;
+.bg {
+    position: absolute; /* Устанавливает абсолютное позиционирование, чтобы элемент позиционировался относительно ближайшего родительского элемента с относительным позиционированием */
+    inset: 0; /* Устанавливает все четыре границы (top, right, bottom, left) на 0, заполняя весь доступный пространство родительского элемента */
+    background: black; /* Устанавливает фоновый цвет элемента на черный */
+    border-radius: calc(var(--border-radius) - var(--pad)); /* Устанавливает радиус скругления границ элемента, вычитая значение переменной --pad из переменной --border-radius */
+    overflow: hidden; /* Скрывает содержимое, выходящее за пределы границ элемента */
 }
 
-.bg>*{
-    position: absolute;
-    inset: 0;
-    display: flex;
-    flex-direction: column;
-    opacity: 0;
-    transition: opacity 1s var(--ease-out) 0.5s;
+.bg > * {
+    position: absolute; /* Устанавливает абсолютное позиционирование для всех непосредственных дочерних элементов, чтобы они позиционировались относительно родительского элемента .bg */
+    inset: 0; /* Устанавливает все четыре границы (top, right, bottom, left) на 0, заполняя весь доступный пространство родительского элемента .bg */
+    display: flex; /* Применяет флексбокс для управления расположением дочерних элементов внутри каждого из этих элементов */
+    flex-direction: column; /* Устанавливает направление флекс-элементов по вертикали (в колонку) */
+    opacity: 0; /* Устанавливает начальную непрозрачность элементов на 0, делая их невидимыми */
+    transition: opacity 1s var(--ease-out) 0.5s; /* Устанавливает переход для свойства opacity с продолжительностью 1 секунда, функцией временной интерполяции var(--ease-out) и задержкой в 0.5 секунды */
 }
 
-.bg .section{
-    --g-h: var(--c-h);
-    --g-s: var(--c-s);
-    --g-l: var(--c-l);
-    flex-grow: 1;
-    position: relative;
-    overflow: hidden;
-    border-radius: calc(var(--border-radius) - var(--pad));
-    border-bottom-left-radius: 20em;
-    border-bottom-right-radius: 20em;
+.bg .section {
+    --g-h: var(--c-h); /* Устанавливает переменную --g-h, равную значению переменной --c-h (оттенок цвета) */
+    --g-s: var(--c-s); /* Устанавливает переменную --g-s, равную значению переменной --c-s (насыщенность цвета) */
+    --g-l: var(--c-l); /* Устанавливает переменную --g-l, равную значению переменной --c-l (яркость цвета) */
+    flex-grow: 1; /* Позволяет элементу занимать доступное пространство в контейнере с флексбоксом, увеличиваясь по мере необходимости */
+    position: relative; /* Устанавливает относительное позиционирование, позволяя использовать абсолютное позиционирование для дочерних элементов */
+    overflow: hidden; /* Скрывает содержимое, выходящее за пределы границ элемента */
+    border-radius: calc(var(--border-radius) - var(--pad)); /* Устанавливает радиус скругления границ элемента, вычитая значение переменной --pad из переменной --border-radius */
+    border-bottom-left-radius: 20em; /* Устанавливает радиус скругления нижнего левого угла элемента на 20em */
+    border-bottom-right-radius: 20em; /* Устанавливает радиус скругления нижнего правого угла элемента на 20em */
 }
 
-.bg .section:before{
-    content: "";
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    background: radial-gradient(85% 125% at 50% 140%, black 66.6%, transparent), radial-gradient(120% 120% at 50% 145%, hsl(calc(var(--g-h) - 45), 100%, 50%) 50%, transparent), radial-gradient(150% 100% at 50% 80%, transparent 35%, hsl(calc(var(--g-h) + 50), 100%, 99%));
-    background-color: hsl(var(--g-h), var(--g-s), var(--g-l));
-    transform: scale3d(1.1, 1.25, 1);
-    transform-origin: bottom;
-    transition: transform 1s var(--ease-out) 0.5s;
+.bg .section:before {
+    content: ""; /* Создает пустой контент для псевдоэлемента, необходимый для его отображения */
+    position: absolute; /* Устанавливает абсолютное позиционирование, чтобы элемент позиционировался относительно ближайшего родительского элемента с относительным позиционированием */
+    inset: 0; /* Устанавливает все четыре границы (top, right, bottom, left) на 0, заполняя весь доступный пространство родительского элемента .section */
+    border-radius: inherit; /* Устанавливает радиус скругления границ псевдоэлемента таким же, как у родительского элемента .section */
+    background: radial-gradient(85% 125% at 50% 140%, black 66.6%, transparent), /* Применяет радиальный градиент, который начинается с черного цвета и переходит в прозрачный, с заданными размерами и положением */
+                radial-gradient(120% 120% at 50% 145%, hsl(calc(var(--g-h) - 45), 100%, 50%) 50%, transparent), /* Применяет второй радиальный градиент с цветом, вычисленным на основе переменной --g-h, который также переходит в прозрачный */
+                radial-gradient(150% 100% at 50% 80%, transparent 35%, hsl(calc(var(--g-h) + 50), 100%, 99%)); /* Применяет третий радиальный градиент, который начинается с прозрачного цвета и переходит в цвет, вычисленный на основе переменной --g-h */
+    background-color: hsl(var(--g-h), var(--g-s), var(--g-l)); /* Устанавливает фоновый цвет псевдоэлемента, используя HSL-значения, определенные переменными --g-h, --g-s и --g-l */
+    transform: scale3d(1.1, 1.25, 1); /* Применяет 3D-преобразование, увеличивая элемент по осям x и y */
+    transform-origin: bottom; /* Устанавливает точку трансформации в нижней части элемента, чтобы масштабирование происходило от нижней границы */
+    transition: transform 1s var(--ease-out) 0.5s; /* Устанавливает переход для свойства transform с продолжительностью 1 секунда, функцией временной интерполяции var(--ease-out) и задержкой в 0.5 секунды */
 }
 
-.bg .section:after{
-    content: "";
-    position: absolute;
-    inset: 0;
-    border: var(--border-width) solid rgba(255, 255, 255, 0.8);
-    border-radius: inherit;
-    filter: blur(0.05em);
-    -webkit-mask-image: radial-gradient(100% 100% at 50% 70%, black 30%, transparent 50%);
-    mask-image: radial-gradient(100% 100% at 50% 70%, black 30%, transparent 50%);
+.bg .section:after {
+    content: ""; /* Создает пустой контент для псевдоэлемента, необходимый для его отображения */
+    position: absolute; /* Устанавливает абсолютное позиционирование, чтобы элемент позиционировался относительно ближайшего родительского элемента с относительным позиционированием */
+    inset: 0; /* Устанавливает все четыре границы (top, right, bottom, left) на 0, заполняя весь доступный пространство родительского элемента .section */
+    border: var(--border-width) solid rgba(255, 255, 255, 0.8); /* Устанавливает границу псевдоэлемента с шириной, определенной переменной --border-width, сплошной белой линией с 80% непрозрачностью */
+    border-radius: inherit; /* Устанавливает радиус скругления границ псевдоэлемента таким же, как у родительского элемента .section */
+    filter: blur(0.05em); /* Применяет размытие к псевдоэлементу с радиусом размытия 0.05em */
+    -webkit-mask-image: radial-gradient(100% 100% at 50% 70%, black 30%, transparent 50%); /* Устанавливает маску для псевдоэлемента с радиальным градиентом, который создает эффект затемнения в центре и прозрачности по краям (для браузеров на основе WebKit) */
+    mask-image: radial-gradient(100% 100% at 50% 70%, black 30%, transparent 50%); /* Устанавливает маску для псевдоэлемента с радиальным градиентом, аналогично предыдущему, для других браузеров */
 }
 
-.bg .section .glow{
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    mix-blend-mode: overlay;
-    z-index: 1;
-    background: radial-gradient(80% 150% at 50% 100%, hsl(var(--g-h), 100%, var(--g-l)), transparent 70%);
+.bg .section .glow {
+    position: absolute; /* Устанавливает абсолютное позиционирование, чтобы элемент позиционировался относительно ближайшего родительского элемента с относительным позиционированием */
+    inset: 0; /* Устанавливает все четыре границы (top, right, bottom, left) на 0, заполняя весь доступный пространство родительского элемента .section */
+    border-radius: inherit; /* Устанавливает радиус скругления границ элемента таким же, как у родительского элемента .section */
+    mix-blend-mode: overlay; /* Устанавливает режим смешивания для элемента, позволяя ему смешиваться с фоном, создавая эффект наложения */
+    z-index: 1; /* Устанавливает уровень наложения элемента, чтобы он находился выше элементов с более низким z-index */
+    background: radial-gradient(80% 150% at 50% 100%, hsl(var(--g-h), 100%, var(--g-l)), transparent 70%); /* Устанавливает фоновый цвет элемента с радиальным градиентом, который начинается с цвета, определенного HSL, и переходит в прозрачный, создавая эффект свечения */
 }
 
-.bg .section:last-of-type{
-    --g-h: calc(var(--c-h) - var(--g-hue-adjust, 0));
-    --g-s: calc(var(--c-s) - 25%);
-    --g-l: calc(var(--c-l) + 20%);
-    transform: scale3d(1, -1, 1) translateZ(1px);
+.bg .section:last-of-type {
+    --g-h: calc(var(--c-h) - var(--g-hue-adjust, 0)); /* Устанавливает переменную --g-h, вычитая значение переменной --g-hue-adjust (по умолчанию 0) из переменной --c-h (оттенок цвета) */
+    --g-s: calc(var(--c-s) - 25%); /* Устанавливает переменную --g-s, уменьшая значение переменной --c-s (насыщенность цвета) на 25% */
+    --g-l: calc(var(--c-l) + 20%); /* Устанавливает переменную --g-l, увеличивая значение переменной --c-l (яркость цвета) на 20% */
+    transform: scale3d(1, -1, 1) translateZ(1px); /* Применяет 3D-преобразование, отражая элемент по оси Y (вертикально) и смещая его на 1 пиксель по оси Z */
 }
 
-.bg .section:last-of-type::before{
-    background: radial-gradient(85% 125% at 50% 140%, black 66.6%, transparent), radial-gradient(120% 120% at 50% 145%, hsl(calc(var(--g-h) - var(--g-hue-adjust-2, var(--g-hue-adjust, 0))), 100%, 50%) 50%, transparent), radial-gradient(150% 100% at 50% 95%, transparent 15%, hsl(calc(var(--g-h) + 5), 100%, var(--g-lightness, 100%)));
-    background-color: hsl(var(--g-h), var(--g-s), var(--g-l));
+.bg .section:last-of-type::before {
+    background: radial-gradient(85% 125% at 50% 140%, black 66.6%, transparent), /* Применяет первый радиальный градиент, который начинается с черного цвета и переходит в прозрачный, с заданными размерами и положением */
+                radial-gradient(120% 120% at 50% 145%, hsl(calc(var(--g-h) - var(--g-hue-adjust-2, var(--g-hue-adjust, 0))), 100%, 50%) 50%, transparent), /* Применяет второй радиальный градиент с цветом, вычисленным на основе переменной --g-h, с учетом переменной --g-hue-adjust-2 (по умолчанию равной --g-hue-adjust или 0), который также переходит в прозрачный */
+                radial-gradient(150% 100% at 50% 95%, transparent 15%, hsl(calc(var(--g-h) + 5), 100%, var(--g-lightness, 100%))); /* Применяет третий радиальный градиент, который начинается с прозрачного цвета и переходит в цвет, вычисленный на основе переменной --g-h, с учетом добавления 5, и с яркостью, определенной переменной --g-lightness (по умолчанию 100%) */
+    background-color: hsl(var(--g-h), var(--g-s), var(--g-l)); /* Устанавливает фоновый цвет псевдоэлемента, используя HSL-значения, определенные переменными --g-h, --g-s и --g-l */
 }
 
-.notch-container{
-    position: absolute;
-    z-index: 3;
-    top: var(--pad);
-    right: var(--pad);
-    left: var(--pad);
-    display: flex;
-    justify-content: center;
-    height: 100%;
-    max-height: calc(var(--notch-radius) * 2);
-    pointer-events: none;
-    outline: none;
-    transition: var(--notch-duration) var(--ease);
-    transition-property: max-height, max-width, filter, transform;
-    will-change: max-width, max-height, filter;
+.notch-container {
+    position: absolute; /* Устанавливает абсолютное позиционирование, чтобы элемент позиционировался относительно ближайшего родительского элемента с относительным позиционированием */
+    z-index: 3; /* Устанавливает уровень наложения элемента, чтобы он находился выше элементов с более низким z-index */
+    top: var(--pad); /* Устанавливает верхнюю границу элемента на значение, определенное переменной --pad */
+    right: var(--pad); /* Устанавливает правую границу элемента на значение, определенное переменной --pad */
+    left: var(--pad); /* Устанавливает левую границу элемента на значение, определенное переменной --pad */
+    display: flex; /* Применяет флексбокс для управления расположением дочерних элементов внутри контейнера */
+    justify-content: center; /* Выравнивает дочерние элементы по центру по горизонтали */
+    height: 100%; /* Устанавливает высоту элемента на 100% высоты родительского элемента */
+    max-height: calc(var(--notch-radius) * 2); /* Устанавливает максимальную высоту элемента на удвоенное значение переменной --notch-radius */
+    pointer-events: none; /* Отключает взаимодействие с элементом, что означает, что клики и другие события указателя не будут обрабатываться этим элементом */
+    outline: none; /* Убирает обводку элемента, если он получает фокус */
+    transition: var(--notch-duration) var(--ease); /* Устанавливает переход для всех свойств с продолжительностью, определенной переменной --notch-duration, и функцией временной интерполяции, определенной переменной --ease */
+    transition-property: max-height, max-width, filter, transform; /* Указывает, какие свойства будут анимироваться при переходе */
+    will-change: max-width, max-height, filter; /* Указывает браузеру, что эти свойства могут изменяться, что может помочь оптимизировать производительность анимации */
 }
 
-.notch-container:hover, .notch-container:focus-within{
-    --shadow-opacity: 0.5s;
-    transition-timing-function: var(--ease-spring);
+.notch-container:hover, .notch-container:focus-within {
+    --shadow-opacity: 0.5s; /* Устанавливает переменную --shadow-opacity на 0.5s при наведении или фокусе на элементе .notch-container */
+    transition-timing-function: var(--ease-spring); /* Устанавливает функцию временной интерполяции для переходов на значение, определенное переменной --ease-spring */
 }
 
-.notch-container:hover .content, .notch-container:focus-within .content{
-    --content-padding: 2em;
+.notch-container:hover .content, .notch-container:focus-within .content {
+    --content-padding: 2em; /* Устанавливает переменную --content-padding на 2em при наведении или фокусе на элементе .notch-container, что изменяет отступы для дочернего элемента .content */
 }
 
-.notch-container:hover .content .text, .notch-container:focus-within .content .text{
-    opacity: 1;
+.notch-container:hover .content .text, .notch-container:focus-within .content .text {
+    opacity: 1; /* Устанавливает непрозрачность элемента .text на 1 (полностью видимый) при наведении или фокусе на элементе .notch-container */
 }
 
-.notch-container:hover .notch, .notch-container:focus-within .notch{
-    max-width: 100%;
-    max-height: 100%;
-    pointer-events: all;
-    transform: scale3d(1, 1, 1);
+.notch-container:hover .notch, .notch-container:focus-within .notch {
+    max-width: 100%; /* Устанавливает максимальную ширину элемента .notch на 100% при наведении или фокусе на элементе .notch-container */
+    max-height: 100%; /* Устанавливает максимальную высоту элемента .notch на 100% при наведении или фокусе на элементе .notch-container */
+    pointer-events: all; /* Включает взаимодействие с элементом .notch, позволяя обрабатывать события указателя */
+    transform: scale3d(1, 1, 1); /* Применяет 3D-преобразование, устанавливая масштаб на 1 по всем осям (без изменений) при наведении или фокусе */
 }
 
-.notch-container:hover~.notch-blur, .notch-container:focus-within~.notch-blur{
-    opacity: 1;
-    max-height: calc(var(--notch-radius) * 2.75 + var(--pad));
+.notch-container:hover ~ .notch-blur, .notch-container:focus-within ~ .notch-blur {
+    opacity: 1; /* Устанавливает непрозрачность элемента .notch-blur на 1 (полностью видимый) при наведении или фокусе на элементе .notch-container */
+    max-height: calc(var(--notch-radius) * 2.75 + var(--pad)); /* Устанавливает максимальную высоту элемента .notch-blur на значение, равное 2.75 умноженному на радиус выреза и добавленному отступу */
 }
 
-.notch-container:focus-within{
-    max-height: calc(var(--notch-radius) * 3);
-    --bar-height: 1em;
-    --bar-opacity: 1;
+.notch-container:focus-within {
+    max-height: calc(var(--notch-radius) * 3); /* Устанавливает максимальную высоту элемента .notch-container на значение, равное утроенному радиусу выреза при фокусе на элементе */
+    --bar-height: 1em; /* Устанавливает переменную --bar-height на 1em при фокусе на элементе .notch-container */
+    --bar-opacity: 1; /* Устанавливает переменную --bar-opacity на 1 (полная непрозрачность) при фокусе на элементе .notch-container */
 }
 
-.notch-container:focus-within .left, .notch-container:focus-within .right{
-    max-height: calc(100% - var(--bar-height, 0%) - var(--content-gap));
+.notch-container:focus-within .left, .notch-container:focus-within .right {
+    max-height: calc(100% - var(--bar-height, 0%) - var(--content-gap)); /* Устанавливает максимальную высоту элементов .left и .right, вычитая высоту бара и промежуток между содержимым из 100% высоты родительского элемента */
 }
 
-.notch-container:focus-within~.notch-blur{
-    max-height: calc(var(--notch-radius) * 5);
-    opacity: 1;
+.notch-container:focus-within ~ .notch-blur {
+    max-height: calc(var(--notch-radius) * 5); /* Устанавливает максимальную высоту элемента .notch-blur на значение, равное пятиричному радиусу выреза при фокусе на элементе .notch-container */
+    opacity: 1; /* Устанавливает непрозрачность элемента .notch-blur на 1 (полностью видимый) при фокусе на элементе .notch-container */
 }
 
-.notch-blur{
-    position: absolute;
-    z-index: 2;
-    top: calc(var(--pad) - 3px);
-    right: calc(var(--pad) - 3px);
-    left: calc(var(--pad) - 3px);
-    height: 100%;
-    max-height: calc(var(--notch-radius) * 1.5);
-    -webkit-backdrop-filter: blur(0.2em);
-    backdrop-filter: blur(0.2em);
-    fill: blur(0.1em);
-    -webkit-mask-image: linear-gradient(to bottom, black calc(100% - var(--notch-radius)), transparent);
-    mask-image: linear-gradient(to bottom, black calc(100% - var(--notch-radius)), transparent);
-    opacity: 0;
-    transition: var(--notch-duration) ease-in-out;
-    border-radius: calc(var(--border-radius) - var(--pad));
-    transition: var(--notch-duration) var(--ease);
-    transition-property: max-height, max-width, filter, transform;
-    will-change: max-width, max-height, filter;
+.notch-blur {
+    position: absolute; /* Устанавливает элемент в абсолютное позиционирование относительно ближайшего родителя с относительным позиционированием */
+    z-index: 2; /* Устанавливает порядок наложения элемента, чтобы он находился выше других элементов с меньшим z-index */
+    top: calc(var(--pad) - 3px); /* Устанавливает верхний отступ элемента, используя переменную --pad и вычитая 3 пикселя */
+    right: calc(var(--pad) - 3px); /* Устанавливает правый отступ элемента, используя переменную --pad и вычитая 3 пикселя */
+    left: calc(var(--pad) - 3px); /* Устанавливает левый отступ элемента, используя переменную --pad и вычитая 3 пикселя */
+    height: 100%; /* Устанавливает высоту элемента равной 100% высоты родительского элемента */
+    max-height: calc(var(--notch-radius) * 1.5); /* Устанавливает максимальную высоту элемента, используя переменную --notch-radius */
+    -webkit-backdrop-filter: blur(0.2em); /* Применяет эффект размытия к фону элемента (для браузеров на основе WebKit) */
+    backdrop-filter: blur(0.2em); /* Применяет эффект размытия к фону элемента (для других браузеров) */
+    fill: blur(0.1em); /* Применяет эффект размытия к заполнению элемента (может не поддерживаться всеми браузерами) */
+    -webkit-mask-image: linear-gradient(to bottom, black calc(100% - var(--notch-radius)), transparent); /* Создает маску с градиентом для элемента (для браузеров на основе WebKit) */
+    mask-image: linear-gradient(to bottom, black calc(100% - var(--notch-radius)), transparent); /* Создает маску с градиентом для элемента (для других браузеров) */
+    opacity: 0; /* Устанавливает начальную непрозрачность элемента в 0 (элемент невидим) */
+    transition: var(--notch-duration) ease-in-out; /* Устанавливает плавный переход для всех свойств с заданной продолжительностью и функцией времени */
+    border-radius: calc(var(--border-radius) - var(--pad)); /* Устанавливает радиус скругления углов элемента, используя переменные --border-radius и --pad */
+    transition: var(--notch-duration) var(--ease); /* Устанавливает плавный переход для всех свойств с заданной продолжительностью и функцией времени (перезаписывает предыдущий transition) */
+    transition-property: max-height, max-width, filter, transform; /* Указывает, какие свойства будут анимироваться при переходе */
+    will-change: max-width, max-height, filter; /* Указывает браузеру, какие свойства могут изменяться, чтобы оптимизировать производительность */
 }
 
-.notch{
-    position: relative;
-    background: black;
-    border-radius: var(--notch-radius);
-    pointer-events: all;
-    overflow: hidden;
-    color: white;
-    display: flex;
-    cursor: pointer;
-    width: 100%;
-    transition: inherit;
-    transition-property: inherit;
-    will-change: inherit;
-    filter: drop-shadow(0 1em 2em hsla(0 0% 0%/var(--shadow-opacity, 0)));
-    transform: scale3d(0.375, 0.4, 1);
-    transform-origin: top;
+.notch {
+    position: relative; /* Устанавливает элемент в относительное позиционирование, позволяя дочерним элементам с абсолютным позиционированием позиционироваться относительно него */
+    background: black; /* Устанавливает черный цвет фона для элемента */
+    border-radius: var(--notch-radius); /* Устанавливает радиус скругления углов элемента, используя переменную --notch-radius */
+    pointer-events: all; /* Позволяет элементу реагировать на все события указателя (например, клики) */
+    overflow: hidden; /* Скрывает содержимое, выходящее за пределы элемента */
+    color: white; /* Устанавливает цвет текста внутри элемента в белый */
+    display: flex; /* Устанавливает элемент как flex-контейнер для упрощения расположения дочерних элементов */
+    cursor: pointer; /* Изменяет курсор на указатель при наведении на элемент */
+    width: 100%; /* Устанавливает ширину элемента равной 100% ширины родительского элемента */
+    transition: inherit; /* Унаследует свойства перехода от родительского элемента */
+    transition-property: inherit; /* Унаследует свойства, которые будут анимироваться, от родительского элемента */
+    will-change: inherit; /* Унаследует свойства, которые могут изменяться, от родительского элемента для оптимизации производительности */
+    filter: drop-shadow(0 1em 2em hsla(0 0% 0%/var(--shadow-opacity, 0))); /* Применяет эффект тени к элементу с использованием переменной --shadow-opacity для настройки прозрачности */
+    transform: scale3d(0.375, 0.4, 1); /* Применяет 3D-преобразование для изменения масштаба элемента по осям X и Y */
+    transform-origin: top; /* Устанавливает точку трансформации в верхней части элемента */
 }
 
-.content{
-    --content-padding: 1.75em;
-    --duration-height: 0.5em;
-    --content-gap: 1em;
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: stretch;
-    justify-content: stretch;
-    padding: var(--content-padding);
-    gap: var(--content-gap);
-    font-size: 125%;
-    transition-property: padding;
-    will-change: padding;
+.content {
+    --content-padding: 1.75em; /* Определяет переменную для внутреннего отступа содержимого */
+    --duration-height: 0.5em; /* Определяет переменную для продолжительности изменения высоты */
+    --content-gap: 1em; /* Определяет переменную для промежутка между элементами содержимого */
+    width: 100%; /* Устанавливает ширину элемента равной 100% ширины родительского элемента */
+    display: flex; /* Устанавливает элемент как flex-контейнер для упрощения расположения дочерних элементов */
+    flex-wrap: wrap; /* Позволяет дочерним элементам переноситься на новую строку, если они не помещаются в одну строку */
+    align-items: stretch; /* Устанавливает выравнивание дочерних элементов по высоте, чтобы они занимали всю доступную высоту */
+    justify-content: stretch; /* Устанавливает выравнивание дочерних элементов по ширине, чтобы они занимали всю доступную ширину */
+    padding: var(--content-padding); /* Устанавливает внутренний отступ, используя переменную --content-padding */
+    gap: var(--content-gap); /* Устанавливает промежуток между дочерними элементами, используя переменную --content-gap */
+    font-size: 125%; /* Устанавливает размер шрифта в 125% от базового размера шрифта */
+    transition-property: padding; /* Указывает, что только свойство padding будет анимироваться при переходе */
+    will-change: padding; /* Указывает браузеру, что свойство padding может изменяться, чтобы оптимизировать производительность */
 }
 
-.content .left, .content .right{
-    height: 100%;
-    max-height: calc(100% - var(--bar-height, 0%));
-    display: flex;
-    align-items: center;
-    gap: 1em;
+.content .left, .content .right {
+    height: 100%; /* Устанавливает высоту элементов .left и .right равной 100% высоты родительского элемента .content */
+    max-height: calc(100% - var(--bar-height, 0%)); /* Устанавливает максимальную высоту элементов, вычитая значение переменной --bar-height из 100% */
+    display: flex; /* Устанавливает элементы как flex-контейнеры для упрощения расположения дочерних элементов */
+    align-items: center; /* Выравнивает дочерние элементы по центру по вертикали */
+    gap: 1em; /* Устанавливает промежуток в 1em между дочерними элементами */
 }
 
-.content, .content .left, .content .right, .content .bar, .content .text{
-    transition: var(--notch-duration) --ease-out;
+.content, .content .left, .content .right, .content .bar, .content .text {
+    transition: var(--notch-duration) --ease-out; /* Устанавливает плавный переход для всех указанных элементов с заданной продолжительностью и функцией времени */
 }
 
-.content .left, .content .right, .content .bar{
-    transition-property: max-height, opacity;
-    will-change: max-height;
+.content .left, .content .right, .content .bar {
+    transition-property: max-height, opacity; /* Указывает, что свойства max-height и opacity будут анимироваться при переходе */
+    will-change: max-height; /* Указывает браузеру, что свойство max-height может изменяться, чтобы оптимизировать производительность */
 }
 
-.content .left{
-    flex-grow: 2;
+.content .left {
+    flex-grow: 2; /* Позволяет элементу .left занимать больше пространства в flex-контейнере по сравнению с другими элементами */
 }
 
-.content .text{
-    display: flex;
-    flex-direction: column;
-    gap: 0.333em;
-    transition-property: opacity;
-    opacity: var(--bar-opacity, 0);
+.content .text {
+    display: flex; /* Устанавливает элемент как flex-контейнер для упрощения расположения дочерних элементов */
+    flex-direction: column; /* Устанавливает направление расположения дочерних элементов по вертикали */
+    gap: 0.333em; /* Устанавливает промежуток в 0.333em между дочерними элементами */
+    transition-property: opacity; /* Указывает, что только свойство opacity будет анимироваться при переходе */
+    opacity: var(--bar-opacity, 0); /* Устанавливает начальную непрозрачность элемента, используя переменную --bar-opacity, по умолчанию 0 */
 }
 
-.content .text:before{
-    content: "MusicArtistName";
-    order: 1;
-    text-transform: uppercase;
+.content .text:before {
+    content: "MusicArtistName"; /* Устанавливает содержимое псевдоэлемента :before как "MusicArtistName" */
+    order: 1; /* Устанавливает порядок отображения псевдоэлемента в flex-контейнере, чтобы он отображался первым */
+    text-transform: uppercase; /* Преобразует текст в верхний регистр */
 }
 
-.content .text:after{
-    order: 2;
-    content: "MusicName";
-    opacity: 0.5;
+.content .text:after {
+    order: 2; /* Устанавливает порядок отображения псевдоэлемента в flex-контейнере, чтобы он отображался вторым */
+    content: "MusicName"; /* Устанавливает содержимое псевдоэлемента :after как "MusicName" */
+    opacity: 0.5; /* Устанавливает непрозрачность псевдоэлемента на 50% */
 }
 
-.content .right{
-    flex-grow: 1;
+.content .right {
+    flex-grow: 1; /* Позволяет элементу .right занимать пространство в flex-контейнере, равное 1 части по сравнению с другими элементами */
 }
 
-.content .title{
-    background: #1a1ab3;
-    height: 100%;
-    aspect-ratio: 1;
-    border-radius: 33.3%;
-    position: relative;
+.content .title {
+    background: #1a1ab3; /* Устанавливает фоновый цвет элемента .title на темно-синий (#1a1ab3) */
+    height: 100%; /* Устанавливает высоту элемента .title равной 100% высоты родительского элемента */
+    aspect-ratio: 1; /* Устанавливает соотношение сторон элемента 1:1, делая его квадратным */
+    border-radius: 33.3%; /* Устанавливает радиус скругления углов элемента, создавая округлую форму */
+    position: relative; /* Устанавливает элемент в относительное позиционирование, позволяя дочерним элементам с абсолютным позиционированием позиционироваться относительно него */
 }
 
-.content .title:before{
-    content: "";
-    position: absolute;
-    inset: 0;
-    border-radius: 50%;
-    background: radial-gradient(50% 50% at 55% 40%, #131386, #cd1385 75%, transparent) center/133.3% 133.3%;
-    background-color: yellow;
-    filter: blur(0.05em);
+.content .title:before {
+    content: ""; /* Устанавливает пустое содержимое для псевдоэлемента :before */
+    position: absolute; /* Устанавливает абсолютное позиционирование для псевдоэлемента, чтобы он позиционировался относительно родительского элемента .title */
+    inset: 0; /* Устанавливает все отступы (top, right, bottom, left) в 0, чтобы псевдоэлемент занимал всю площадь родительского элемента */
+    border-radius: 50%; /* Устанавливает радиус скругления углов в 50%, создавая круговую форму */
+    background: radial-gradient(50% 50% at 55% 40%, #131386, #cd1385 75%, transparent) center/133.3% 133.3%; /* Устанавливает радиальный градиент как фон, с центром в 55% по горизонтали и 40% по вертикали */
+    background-color: yellow; /* Устанавливает желтый цвет фона (может перекрывать градиент, если не будет прозрачности) */
+    filter: blur(0.05em); /* Применяет размытие к фону псевдоэлемента */
 }
 
-.content .bar{
-    display: flex;
-    align-items: center;
-    gap: 1em;
-    flex-basis: 100%;
-    max-height: var(--bar-height, 0%);
-    color: rgba(255, 255, 255, 0.5);
-    opacity: var(--bar-opacity, 0);
+.content .bar {
+    display: flex; /* Устанавливает элемент как flex-контейнер для упрощения расположения дочерних элементов */
+    align-items: center; /* Выравнивает дочерние элементы по центру по вертикали */
+    gap: 1em; /* Устанавливает промежуток в 1em между дочерними элементами */
+    flex-basis: 100%; /* Устанавливает базовую ширину элемента в 100% от родительского контейнера */
+    max-height: var(--bar-height, 0%); /* Устанавливает максимальную высоту элемента, используя переменную --bar-height, по умолчанию 0% */
+    color: rgba(255, 255, 255, 0.5); /* Устанавливает цвет текста на полупрозрачный белый (50% непрозрачности) */
+    opacity: var(--bar-opacity, 0); /* Устанавливает начальную непрозрачность элемента, используя переменную --bar-opacity, по умолчанию 0 */
 }
 
-.content .bar .duration{
-    position: relative;
-    height: var(--duration-height);
-    background: rgba(255, 255, 255, 0.25);
-    border-radius: calc(var(--duration-height) * 0.5);
-    overflow: hidden;
-    flex-grow: 1;
+.content .bar .duration {
+    position: relative; /* Устанавливает относительное позиционирование для элемента .duration, позволяя дочерним элементам с абсолютным позиционированием позиционироваться относительно него */
+    height: var(--duration-height); /* Устанавливает высоту элемента, используя переменную --duration-height */
+    background: rgba(255, 255, 255, 0.25); /* Устанавливает полупрозрачный белый цвет фона для элемента .duration */
+    border-radius: calc(var(--duration-height) * 0.5); /* Устанавливает радиус скругления углов, равный половине высоты элемента */
+    overflow: hidden; /* Скрывает содержимое, выходящее за пределы элемента */
+    flex-grow: 1; /* Позволяет элементу .duration занимать доступное пространство в flex-контейнере */
 }
 
-.content .bar .duration::before{
-    content: "";
-    height: 100%;
-    background: white;
-    width: 25%;
-    position: absolute;
+.content .bar .duration::before {
+    content: ""; /* Устанавливает пустое содержимое для псевдоэлемента :before */
+    height: 100%; /* Устанавливает высоту псевдоэлемента равной 100% высоты родительского элемента .duration */
+    background: white; /* Устанавливает белый цвет фона для псевдоэлемента */
+    width: 25%; /* Устанавливает ширину псевдоэлемента равной 25% ширины родительского элемента .duration */
+    position: absolute; /* Устанавливает абсолютное позиционирование для псевдоэлемента, чтобы он позиционировался относительно родительского элемента .duration */
 }
 
-.content .bar::before{
-    content: "1:20";
+.content .bar::before {
+    content: "1:20"; /* Устанавливает содержимое псевдоэлемента :before как "1:20" */
 }
 
-.content .bar:after{
-    content: "-1.48";
+.content .bar::after {
+    content: "-1.48"; /* Устанавливает содержимое псевдоэлемента :after как "-1.48" */
 }
 
-.camera{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: var(--notch-height);
-    aspect-ratio: 1/1;
-    border-radius: 50%;
-    pointer-events: none;
-    position: absolute;
-    z-index: 4;
-    top: calc(var(--pad) * 2);
-    right: calc(50% - calc(var(--notch-width) * 0.5));
-    margin-right: calc(var(--pad) * 0.333);
+.camera {
+    display: flex; /* Устанавливает элемент как flex-контейнер для упрощения расположения дочерних элементов */
+    justify-content: center; /* Выравнивает дочерние элементы по центру по горизонтали */
+    align-items: center; /* Выравнивает дочерние элементы по центру по вертикали */
+    height: var(--notch-height); /* Устанавливает высоту элемента, используя переменную --notch-height */
+    aspect-ratio: 1/1; /* Устанавливает соотношение сторон элемента 1:1, делая его квадратным */
+    border-radius: 50%; /* Устанавливает радиус скругления углов в 50%, создавая круговую форму */
+    pointer-events: none; /* Отключает взаимодействие с элементом (не реагирует на события указателя) */
+    position: absolute; /* Устанавливает абсолютное позиционирование для элемента, позволяя ему быть размещенным относительно ближайшего родителя с относительным позиционированием */
+    z-index: 4; /* Устанавливает порядок наложения элемента, чтобы он находился выше других элементов с меньшим z-index */
+    top: calc(var(--pad) * 2); /* Устанавливает верхний отступ элемента, используя переменную --pad и умножая на 2 */
+    right: calc(50% - calc(var(--notch-width) * 0.5)); /* Устанавливает правый отступ элемента, чтобы центрировать его относительно родительского элемента, вычитая половину ширины выемки */
+    margin-right: calc(var(--pad) * 0.333); /* Устанавливает правый внешний отступ элемента, используя переменную --pad и умножая на 0.333 */
 }
 
-.camera::before{
-    content: "";
-    height: 33.3%;
-    aspect-ratio: 1;
-    border-radius: inherit;
-    box-shadow: inset 0 0 0.25em #4c4da3;
-    background: radial-gradient(#6667ac, transparent 50%) no-repeat 33.3% 10%/75% 50%, radial-gradient(#454680, transparent 50%) no-repeat 60% 85%/50% 50%;
-    background-color: #080928;
+.camera::before {
+    content: ""; /* Устанавливает пустое содержимое для псевдоэлемента :before */
+    height: 33.3%; /* Устанавливает высоту псевдоэлемента равной 33.3% высоты родительского элемента .camera */
+    aspect-ratio: 1; /* Устанавливает соотношение сторон псевдоэлемента 1:1, делая его квадратным */
+    border-radius: inherit; /* Унаследует радиус скругления углов от родительского элемента .camera */
+    box-shadow: inset 0 0 0.25em #4c4da3; /* Применяет внутреннюю тень к псевдоэлементу с заданными смещениями и цветом */
+    background: radial-gradient(#6667ac, transparent 50%) no-repeat 33.3% 10%/75% 50%, /* Устанавливает радиальный градиент как фон, с центром в 33.3% по горизонтали и 10% по вертикали, и размером 75% по ширине и 50% по высоте */
+                radial-gradient(#454680, transparent 50%) no-repeat 60% 85%/50% 50%; /* Устанавливает второй радиальный градиент как фон, с центром в 60% по горизонтали и 85% по вертикали, и размером 50% по ширине и высоте */
+    background-color: #080928; /* Устанавливает цвет фона псевдоэлемента на темно-синий (#080928) */
 }
 
-.pallette{
-    display: flex;
-    gap: 2em;
-    margin-bottom: -0.25em;
+.pallette {
+    display: flex; /* Устанавливает элемент как flex-контейнер для упрощения расположения дочерних элементов */
+    gap: 2em; /* Устанавливает промежуток в 2em между дочерними элементами */
+    margin-bottom: -0.25em; /* Устанавливает отрицательный нижний внешний отступ, чтобы уменьшить пространство между элементом и следующим элементом */
 }
 
-input[type=radio]{
-    display: none;
+input[type=radio] {
+    display: none; /* Скрывает элементы input типа radio, чтобы они не отображались на странице */
 }
 
-.swatch{
-    --swatch-size: 5em;
-    background: white;
-    width: var(--swatch-size);
-    height: var(--swatch-size);
-    border-radius: 50%;
-    position: relative;
-    cursor: pointer;
-    border: var(--border-width) solid black;
-    box-sizing: border-box;
-    transition: 0.333s var(--ease-out);
-    transition-property: border-color, transform;
-    background: radial-gradient(100% 100% at 50% 30%, var(--swatch-s1), var(--swatch-s2));
-    opacity: 0;
-    transform: translate3d(0, 20%, 0) scale3d(0.75, 0.75, 1);
-    -webkit-animation: appear 0.333s var(--ease-out) forwards 0.75s;
-    animation: appear 0.333s var(--ease-out) forwards 0.75s;
+.swatch {
+    --swatch-size: 5em; /* Определяет переменную для размера элемента swatch, равную 5em */
+    background: white; /* Устанавливает белый цвет фона для элемента */
+    width: var(--swatch-size); /* Устанавливает ширину элемента, используя переменную --swatch-size */
+    height: var(--swatch-size); /* Устанавливает высоту элемента, используя переменную --swatch-size */
+    border-radius: 50%; /* Устанавливает радиус скругления углов в 50%, создавая круговую форму */
+    position: relative; /* Устанавливает относительное позиционирование для элемента, позволяя дочерним элементам с абсолютным позиционированием позиционироваться относительно него */
+    cursor: pointer; /* Изменяет курсор на указатель при наведении на элемент */
+    border: var(--border-width) solid black; /* Устанавливает границу с заданной шириной (переменная --border-width) и черным цветом */
+    box-sizing: border-box; /* Устанавливает модель коробки, чтобы ширина и высота включали отступы и границы */
+    transition: 0.333s var(--ease-out); /* Устанавливает плавный переход для всех свойств с заданной продолжительностью и функцией времени */
+    transition-property: border-color, transform; /* Указывает, что свойства border-color и transform будут анимироваться при переходе */
+    background: radial-gradient(100% 100% at 50% 30%, var(--swatch-s1), var(--swatch-s2)); /* Устанавливает радиальный градиент как фон, с центром в 50% по горизонтали и 30% по вертикали, используя переменные --swatch-s1 и --swatch-s2 */
+    opacity: 0; /* Устанавливает начальную непрозрачность элемента в 0 (элемент невидим) */
+    transform: translate3d(0, 20%, 0) scale3d(0.75, 0.75, 1); /* Применяет 3D-преобразование для смещения элемента вниз на 20% и уменьшения масштаба до 75% по осям X и Y */
+    -webkit-animation: appear 0.333s var(--ease-out) forwards 0.75s; /* Применяет анимацию "appear" с заданной продолжительностью и функцией времени, с задержкой 0.75s (для браузеров на основе WebKit) */
+    animation: appear 0.333s var(--ease-out) forwards 0.75s; /* Применяет анимацию "appear" с заданной продолжительностью и функцией времени, с задержкой 0.75s */
 }
 
-.swatch:nth-child(1){
-    transform-origin: 80% 200%;
+.swatch:nth-child(1) {
+    transform-origin: 80% 200%; /* Устанавливает точку трансформации для первого дочернего элемента, чтобы он вращался вокруг точки, находящейся на 80% по горизонтали и 200% по вертикали */
 }
 
-.swatch:nth-child(2){
-    -webkit-animation-delay: 0.8s;
-    animation-delay: 0.8s;
-    transform-origin: 60% 200%;
+.swatch:nth-child(2) {
+    -webkit-animation-delay: 0.8s; /* Устанавливает задержку анимации для второго дочернего элемента (для браузеров на основе WebKit) */
+    animation-delay: 0.8s; /* Устанавливает задержку анимации для второго дочернего элемента */
+    transform-origin: 60% 200%; /* Устанавливает точку трансформации для второго дочернего элемента, чтобы он вращался вокруг точки, находящейся на 60% по горизонтали и 200% по вертикали */
 }
 
-.swatch:nth-child(3){
-    -webkit-animation-delay: 0.85s;
-    animation-delay: 0.85s;
-    transform-origin: 40% 200%;
+.swatch:nth-child(3) {
+    -webkit-animation-delay: 0.85s; /* Устанавливает задержку анимации для третьего дочернего элемента (для браузеров на основе WebKit) */
+    animation-delay: 0.85s; /* Устанавливает задержку анимации для третьего дочернего элемента */
+    transform-origin: 40% 200%; /* Устанавливает точку трансформации для третьего дочернего элемента, чтобы он вращался вокруг точки, находящейся на 40% по горизонтали и 200% по вертикали */
 }
 
-.swatch:nth-child(4){
-    -webkit-animation-delay: 0.9s;
-    animation-delay: 0.9s;
-    transform-origin: 20% 200%;
+.swatch:nth-child(4) {
+    -webkit-animation-delay: 0.9s; /* Устанавливает задержку анимации для четвертого дочернего элемента (для браузеров на основе WebKit) */
+    animation-delay: 0.9s; /* Устанавливает задержку анимации для четвертого дочернего элемента */
+    transform-origin: 20% 200%; /* Устанавливает точку трансформации для четвертого дочернего элемента, чтобы он вращался вокруг точки, находящейся на 20% по горизонтали и 200% по вертикали */
 }
 
-.swatch:before{
-    content: "";
-    position: absolute;
-    inset: -1px;
-    border-radius: inherit;
-    border: var(--border-width) solid black;
-    background-image: radial-gradient(400% 300% at 50% 225%, transparent 20%, white);
+.swatch:before {
+    content: ""; /* Устанавливает пустое содержимое для псевдоэлемента :before */
+    position: absolute; /* Устанавливает абсолютное позиционирование для псевдоэлемента, чтобы он позиционировался относительно родительского элемента .swatch */
+    inset: -1px; /* Устанавливает все отступы (top, right, bottom, left) в -1px, чтобы псевдоэлемент немного выходил за пределы родительского элемента */
+    border-radius: inherit; /* Унаследует радиус скругления углов от родительского элемента .swatch */
+    border: var(--border-width) solid black; /* Устанавливает границу с заданной шириной (переменная --border-width) и черным цветом */
+    background-image: radial-gradient(400% 300% at 50% 225%, transparent 20%, white); /* Устанавливает радиальный градиент как фон, с центром в 50% по горизонтали и 225% по вертикали, переходящий от прозрачного к белому */
 }
 
 .swatch[for=deep-purple] {
-    --swatch-s1: hsl(var(--deep-purple), 100%, 50%);
-    --swatch-s2: hsl(calc(var(--deep-purple) - 60), 100%, 20%);
+    --swatch-s1: hsl(var(--deep-purple), 100%, 50%); /* Устанавливает переменную --swatch-s1 для цвета, используя HSL-значение, основанное на переменной --deep-purple */
+    --swatch-s2: hsl(calc(var(--deep-purple) - 60), 100%, 20%); /* Устанавливает переменную --swatch-s2 для цвета, используя HSL-значение, основанное на переменной --deep-purple, уменьшенной на 60 */
 }
 
-.swatch[for=deep-purple]:before{
-    opacity: 0.5;
+.swatch[for=deep-purple]:before {
+    opacity: 0.5; /* Устанавливает непрозрачность псевдоэлемента :before для элемента .swatch с атрибутом for, равным "deep-purple", на 50% */
 }
 
 .swatch[for=gold] {
-    --swatch-s1: hsl(var(--gold), 100%, 50%);
-    --swatch-s2: hsl(var(--gold), 100%, 50%);
+    --swatch-s1: hsl(var(--gold), 100%, 50%); /* Устанавливает переменную --swatch-s1 для цвета, используя HSL-значение, основанное на переменной --gold */
+    --swatch-s2: hsl(var(--gold), 100%, 50%); /* Устанавливает переменную --swatch-s2 для цвета, используя HSL-значение, основанное на переменной --gold */
 }
 
 .swatch[for=space-black] {
-    --swatch-s1: hsl(var(--space-black), 50%, 20%);
-    --swatch-s2: hsl(var(--space-black), 50%, 10%);
+    --swatch-s1: hsl(var(--space-black), 50%, 20%); /* Устанавливает переменную --swatch-s1 для цвета, используя HSL-значение, основанное на переменной --space-black, с 50% насыщенности и 20% яркости */
+    --swatch-s2: hsl(var(--space-black), 50%, 10%); /* Устанавливает переменную --swatch-s2 для цвета, используя HSL-значение, основанное на переменной --space-black, с 50% насыщенности и 10% яркости */
 }
 
-.swatch[for=space-black]:before{
-    opacity: 0.5;
+.swatch[for=space-black]:before {
+    opacity: 0.5; /* Устанавливает непрозрачность псевдоэлемента :before для элемента .swatch с атрибутом for, равным "space-black", на 50% */
 }
 
 .swatch[for=silver] {
-    --swatch-s1: hsl(var(--silver), 50%, 80%);
-    --swatch-s2: hsl(var(--silver), 50%, 10%);
+    --swatch-s1: hsl(var(--silver), 50%, 80%); /* Устанавливает переменную --swatch-s1 для цвета, используя HSL-значение, основанное на переменной --silver, с 50% насыщенности и 80% яркости */
+    --swatch-s2: hsl(var(--silver), 50%, 10%); /* Устанавливает переменную --swatch-s2 для цвета, используя HSL-значение, основанное на переменной --silver, с 50% насыщенности и 10% яркости */
 }
 
-.swatch[for=silver]:before{
-    opacity: 0.75;
+.swatch[for=silver]:before {
+    opacity: 0.75; /* Устанавливает непрозрачность псевдоэлемента :before для элемента .swatch с атрибутом for, равным "silver", на 75% */
 }
 
-.deep-purple{
-    --c-h: var(--deep-purple);
-    --g-hue-adjust: 60;
+.deep-purple {
+    --c-h: var(--deep-purple); /* Устанавливает переменную --c-h равной значению переменной --deep-purple */
+    --g-hue-adjust: 60; /* Устанавливает переменную --g-hue-adjust равной 60, возможно, для использования в дальнейшем для изменения оттенка */
 }
 
-.gold{
-    --c-h: var(--gold);
-    --g-hue-adjust-2: -100;
+.gold {
+    --c-h: var(--gold); /* Устанавливает переменную --c-h равной значению переменной --gold для использования в дальнейшем */
+    --g-hue-adjust-2: -100; /* Устанавливает переменную --g-hue-adjust-2 равной -100, возможно, для изменения оттенка цвета */
 }
 
-.space-black{
-    --c-h: var(--space-black);
-    --g-hue-adjust: 190;
-    --g-hue-adjust-2: 145;
-    --g-lightness: 95%;
+.space-black {
+    --c-h: var(--space-black); /* Устанавливает переменную --c-h равной значению переменной --space-black для использования в дальнейшем */
+    --g-hue-adjust: 190; /* Устанавливает переменную --g-hue-adjust равной 190, возможно, для изменения оттенка цвета */
+    --g-hue-adjust-2: 145; /* Устанавливает переменную --g-hue-adjust-2 равной 145, возможно, для дополнительного изменения оттенка цвета */
+    --g-lightness: 95%; /* Устанавливает переменную --g-lightness равной 95%, возможно, для управления яркостью цвета */
 }
 
-.silver{
-    --c-h: var(--silver);
-    --c-s: 10%;
-    --g-hue-adjust: 30;
-    --g-lightness: 95%;
+.silver {
+    --c-h: var(--silver); /* Устанавливает переменную --c-h равной значению переменной --silver для использования в дальнейшем */
+    --c-s: 10%; /* Устанавливает переменную --c-s равной 10%, возможно, для управления насыщенностью цвета */
+    --g-hue-adjust: 30; /* Устанавливает переменную --g-hue-adjust равной 30, возможно, для изменения оттенка цвета */
+    --g-lightness: 95%; /* Устанавливает переменную --g-lightness равной 95%, возможно, для управления яркостью цвета */
 }
 
-.silver .glow{
-    opacity: 0.25;
+.silver .glow {
+    opacity: 0.25; /* Устанавливает непрозрачность элемента с классом .glow внутри элемента с классом .silver на 25% */
 }
 
-#deep-purple:checked~.phone .bg .deep-purple{
-    opacity: 1;
-    z-index: 1;
-    transition-delay: 0s;
+#deep-purple:checked~.phone .bg .deep-purple {
+    opacity: 1; /* Устанавливает непрозрачность элемента с классом .deep-purple на 100% (полностью видимый) при условии, что элемент с id deep-purple отмечен (checked) */
+    z-index: 1; /* Устанавливает порядок наложения элемента с классом .deep-purple на 1, чтобы он находился выше других элементов с меньшим z-index */
+    transition-delay: 0s; /* Устанавливает задержку перехода на 0 секунд, чтобы анимация началась немедленно */
 }
 
-#deep-purple:checked~.phone .bg .deep-purple .section::before{
-    transition-delay: 0s;
-    animation: test 1s infinite alternate-reverse;
+#deep-purple:checked~.phone .bg .deep-purple .section::before {
+    transition-delay: 0s; /* Устанавливает задержку перехода на 0 секунд для псевдоэлемента :before внутри элемента .section, когда элемент с id deep-purple отмечен (checked) */
+    animation: test 1s infinite alternate-reverse; /* Применяет анимацию "test" с продолжительностью 1 секунда, которая будет повторяться бесконечно и изменять направление на каждом цикле */
 }
 
-#deep-purple:checked~.pallette label[for=deep-purple]{
-    border-color: hsl(var(--deep-purple), 50%, 75%);
+#deep-purple:checked~.pallette label[for=deep-purple] {
+    border-color: hsl(var(--deep-purple), 50%, 75%); /* Устанавливает цвет границы для метки, связанной с элементом с id deep-purple, используя HSL-значение на основе переменной --deep-purple */
 }
 
-#gold:checked~.phone .bg .gold{
-    opacity: 1;
-    z-index: 1;
-    transition-delay: 0s;
+#gold:checked~.phone .bg .gold {
+    opacity: 1; /* Устанавливает непрозрачность элемента с классом .gold на 100% (полностью видимый) при условии, что элемент с id gold отмечен (checked) */
+    z-index: 1; /* Устанавливает порядок наложения элемента с классом .gold на 1, чтобы он находился выше других элементов с меньшим z-index */
+    transition-delay: 0s; /* Устанавливает задержку перехода на 0 секунд, чтобы анимация началась немедленно */
 }
 
-#gold:checked~.phone .bg .gold .section::before{
-    transition-delay: 0s;
-    transform: scale3d(1, 1, 1) translate3d(0, 0, 0);
-    animation: test 1s infinite alternate-reverse;
+#gold:checked~.phone .bg .gold .section::before {
+    transition-delay: 0s; /* Устанавливает задержку перехода на 0 секунд для псевдоэлемента :before внутри элемента .section, когда элемент с id gold отмечен (checked) */
+    transform: scale3d(1, 1, 1) translate3d(0, 0, 0); /* Устанавливает 3D-преобразование для псевдоэлемента :before, чтобы он не изменялся (масштаб 1 и смещение 0) */
+    animation: test 1s infinite alternate-reverse; /* Применяет анимацию "test" с продолжительностью 1 секунда, которая будет повторяться бесконечно и изменять направление на каждом цикле */
 }
 
-#gold:checked~.pallette label[for=gold]{
-    border-color: hsl(var(--gold), 50%, 75%);
+#gold:checked~.pallette label[for=gold] {
+    border-color: hsl(var(--gold), 50%, 75%); /* Устанавливает цвет границы для метки, связанной с элементом с id gold, используя HSL-значение на основе переменной --gold */
 }
 
-#space-black:checked~.phone .bg .space-black{
-    opacity: 1;
-    z-index: 1;
-    transition-delay: 0s;
+#space-black:checked~.phone .bg .space-black {
+    opacity: 1; /* Устанавливает непрозрачность элемента с классом .space-black на 100% (полностью видимый) при условии, что элемент с id space-black отмечен (checked) */
+    z-index: 1; /* Устанавливает порядок наложения элемента с классом .space-black на 1, чтобы он находился выше других элементов с меньшим z-index */
 }
 
-#space-black:checked~.phone .bg .space-black .section::before{
-    transition-delay: 0s;
-    transform: scale3d(1, 1, 1) translate3d(0, 0, 0);
-    animation: test 1s infinite alternate-reverse;
+#space-black:checked~.phone .bg .space-black .section::before {
+    transition-delay: 0s; /* Устанавливает задержку перехода на 0 секунд для псевдоэлемента :before внутри элемента .section, когда элемент с id space-black отмечен (checked) */
+    transform: scale3d(1, 1, 1) translate3d(0, 0, 0); /* Устанавливает 3D-преобразование для псевдоэлемента :before, чтобы он не изменялся (масштаб 1 и смещение 0) */
+    animation: test 1s infinite alternate-reverse; /* Применяет анимацию "test" с продолжительностью 1 секунда, которая будет повторяться бесконечно и изменять направление на каждом цикле */
 }
 
-#space-black:checked~.pallette label[for=space-black]{
-    border-color: hsl(var(--space-black), 50%, 75%);
+#space-black:checked~.pallette label[for=space-black] {
+    border-color: hsl(var(--space-black), 50%, 75%); /* Устанавливает цвет границы для метки, связанной с элементом с id space-black, используя HSL-значение на основе переменной --space-black */
 }
 
-#silver:checked~.phone .bg .silver{
-    opacity: 1;
-    z-index: 1;
-    transition-delay: 0s;
+#silver:checked~.phone .bg .silver {
+    opacity: 1; /* Устанавливает непрозрачность элемента с классом .silver на 100% (полностью видимый) при условии, что элемент с id silver отмечен (checked) */
+    z-index: 1; /* Устанавливает порядок наложения элемента с классом .silver на 1, чтобы он находился выше других элементов с меньшим z-index */
+    transition-delay: 0s; /* Устанавливает задержку перехода на 0 секунд, чтобы анимация началась немедленно */
 }
 
-#silver:checked~.phone .bg .silver .section::before{
-    transition-delay: 0s;
-    transform: scale3d(1, 1, 1) translate3d(0, 0, 0);
-    animation: test 1s infinite alternate-reverse;
+#silver:checked~.phone .bg .silver .section::before {
+    transition-delay: 0s; /* Устанавливает задержку перехода на 0 секунд для псевдоэлемента :before внутри элемента .section, когда элемент с id silver отмечен (checked) */
+    transform: scale3d(1, 1, 1) translate3d(0, 0, 0); /* Устанавливает 3D-преобразование для псевдоэлемента :before, чтобы он не изменялся (масштаб 1 и смещение 0) */
+    animation: test 1s infinite alternate-reverse; /* Применяет анимацию "test" с продолжительностью 1 секунда, которая будет повторяться бесконечно и изменять направление на каждом цикле */
 }
 
-#silver:checked~.pallette label[for=silver]{
-    border-color: hsl(var(--silver), 50%, 75%);
+#silver:checked~.pallette label[for=silver] {
+    border-color: hsl(var(--silver), 50%, 75%); /* Устанавливает цвет границы для метки, связанной с элементом с id silver, используя HSL-значение на основе переменной --silver */
 }
 
-@keyframes test{
-    from{
-        transform: scale3d(1, 1, 1) translate3d(0, 0, 0);
+@keyframes test { /* Определяет анимацию с именем "test" */
+    from { /* Начальное состояние анимации */
+        transform: scale3d(1, 1, 1) translate3d(0, 0, 0); /* Устанавливает начальное 3D-преобразование (масштаб 1 и смещение 0) */
     }
-    to{
-        transform: scale3d(2, 2, 2) translate3d(50px, 50px, 50px);
+    to { /* Конечное состояние анимации */
+        transform: scale3d(2, 2, 2) translate3d(50px, 50px, 50px); /* Устанавливает конечное 3D-преобразование (масштаб 2 и смещение на 50 пикселей по всем осям) */
     }
 }
